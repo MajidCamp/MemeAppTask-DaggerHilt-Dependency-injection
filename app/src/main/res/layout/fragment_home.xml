@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.Home.HomeFragment">
+
+    <ImageView
+        android:id="@+id/wholesome"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/wholesomememes"
+        app:layout_constraintBottom_toTopOf="@+id/funnyAnimals"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/darkSouls"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/darksouls"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/funnyAnimals" />
+
+    <ImageView
+        android:id="@+id/funnyAnimals"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/funnyanimals"
+        app:layout_constraintBottom_toTopOf="@+id/darkSouls"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wholesome" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
