@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
+import coil.ImageLoader
 import coil.load
 import com.example.ktorsampleapp.databinding.FragmentMemeBinding
 import com.example.ktorsampleapp.model.meme.Meme
 import com.example.ktorsampleapp.model.meme.MemeItem
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-class MemeRecyclerViewAdapter() : ListAdapter<Meme, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+
+class MemeRecyclerViewAdapter @Inject constructor(private val imageLoader:ImageLoader) : ListAdapter<Meme, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+
         companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Meme>() {
 
@@ -48,7 +53,7 @@ class MemeRecyclerViewAdapter() : ListAdapter<Meme, RecyclerView.ViewHolder>(DIF
                 Log.d("adapter", "bind $adapterPosition")
                 itemBinding.apply {
                     title.text = item.title
-                    ivPicture.load(item.url)
+                    ivPicture.load(item.url,imageLoader)
                 }
             }
 

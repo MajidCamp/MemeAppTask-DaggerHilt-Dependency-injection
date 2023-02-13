@@ -10,6 +10,7 @@ import com.example.ktorsampleapp.R
 import com.example.ktorsampleapp.databinding.FragmentMemeListBinding
 import com.example.ktorsampleapp.utils.Resource
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * A fragment representing a list of Items.
@@ -20,6 +21,9 @@ class memeFragment : Fragment(R.layout.fragment_meme_list) {
     private val binding get() = _binding
     private val viewModel:MemeViewModel by viewModels()
     private val args by navArgs<memeFragmentArgs>()
+
+    @Inject
+    lateinit var adapter:MemeRecyclerViewAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMemeListBinding.bind(view)
@@ -28,7 +32,7 @@ class memeFragment : Fragment(R.layout.fragment_meme_list) {
     }
 
     fun setupViews() {
-        val adapter = MemeRecyclerViewAdapter()
+
         Log.d("Direction",args.subR)
         viewModel.address = args.subR
         viewModel.getMemes()

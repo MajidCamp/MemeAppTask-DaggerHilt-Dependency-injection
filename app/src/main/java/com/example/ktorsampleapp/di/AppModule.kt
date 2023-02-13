@@ -1,10 +1,16 @@
 package com.example.ktorsampleapp.di
 
+import android.content.Context
+import android.os.Build.VERSION.SDK_INT
+import coil.ImageLoader
+import coil.decode.GifDecoder
+import coil.decode.ImageDecoderDecoder
 import com.example.ktorsampleapp.model.MemeApi
 import com.example.ktorsampleapp.model.MemeApiImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.*
 import io.ktor.client.engine.android.*
@@ -51,4 +57,17 @@ object AppModule {
     fun provideMemeApi(client: HttpClient):MemeApi{
         return  MemeApiImp(client)
     }
+
+
+    @Provides
+    @Singleton
+    fun getImageLoader(@ApplicationContext context:Context):ImageLoader = ImageLoader.Builder(context)
+        .components {
+            if (SDK_INT >= 28) {
+                add(ImageDecoderDecoder.Factory())
+            } else {
+                add(GifDecoder.Factory())
+            }
+        }
+        .build()
 }
